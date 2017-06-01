@@ -1,0 +1,11 @@
+filebeat:
+  image: willfarrell/filebeat:5-stdin
+  environment:
+    HOSTNAME: "simprodlogger"
+    LOGSTASH_HOST: "logstash.mgcoders.com"
+    LOGSTASH_PORT: "5000"
+    STDIN_CONTAINER_LABEL: "all"
+  restart: always
+  volumes:
+   - "./filebeat.yml:/etc/filebeat/filebeat.yml:rw"
+   - "/var/run/docker.sock:/tmp/docker.sock:ro"
